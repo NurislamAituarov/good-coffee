@@ -12,6 +12,7 @@
           v-for="(item, i) in items"
           :key="i"
           :to="item.to"
+          @click.stop="miniVariant = false"
           router
           exact
         >
@@ -21,24 +22,19 @@
           <v-list-item-content>
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
+          <v-btn v-if="!item.to" icon @click.stop="miniVariant = !miniVariant">
+            <v-icon
+              >mdi-{{ `chevron-${miniVariant ? "right" : "left"}` }}</v-icon
+            >
+          </v-btn>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar :clipped-left="clipped" fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon>mdi-{{ `chevron-${miniVariant ? "right" : "left"}` }}</v-icon>
-      </v-btn>
+      <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
+
       <v-btn icon @click.stop="clipped = !clipped">
         <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
-      <v-spacer />
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>mdi-menu</v-icon>
       </v-btn>
     </v-app-bar>
     <v-main>
@@ -72,20 +68,53 @@ export default {
       fixed: false,
       items: [
         {
-          icon: "mdi-apps",
-          title: "Welcome",
-          to: "/",
+          icon: "mdi-account-circle",
+          title: "Айтуаров Нурислам",
         },
         {
-          icon: "mdi-chart-bubble",
-          title: "Inspire",
-          to: "/inspire",
+          icon: "mdi-home-map-marker",
+          title: "Торговые точки",
+          to: "/1",
+        },
+        {
+          icon: "mdi-cog",
+          title: "Кофемашины",
+          to: "/Inspire",
+        },
+        {
+          icon: "mdi-handshake-outline",
+          title: "Партнеры",
+          to: "/3",
+        },
+        {
+          icon: "mdi-account-group",
+          title: "Сотрудники",
+          to: "/4",
+        },
+        {
+          icon: "mdi-liquor",
+          title: "Напитки",
+          to: "/5",
+        },
+        {
+          icon: "mdi-card-account-details-outline",
+          title: "Абонементы",
+          to: "/6",
+        },
+        {
+          icon: "mdi-card-account-details-star-outline",
+          title: "Активные абонименты",
+          to: "/7",
+        },
+        {
+          icon: "mdi-account-group",
+          title: "Пользователи",
+          to: "/",
         },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: "Vuetify.js",
     };
   },
 };
